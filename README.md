@@ -84,25 +84,36 @@ With the virtual environment active, we can now install `ultralytics` and its de
 2.  **Handle OpenCV Dependency:** The default `ultralytics` installation includes an `opencv-python` package that can conflict with the system's pre-installed OpenCV on the Jetson. The following steps will install `ultralytics`, remove the conflicting OpenCV package, and then ensure the other dependencies are present.
     ```bash
     pip install ultralytics
+    
     pip uninstall -y opencv-python opencv-python-headless
+    
     pip install --no-deps ultralytics
+    
     pip install matplotlib pandas py-cpuinfo thop seaborn
     ```
 3.  Install PyTorch and Torchvision wheels compatible with the Jetson architecture:
     ```bash
-    pip install [https://github.com/ultralytics/assets/releases/download/v0.0.0/torch-2.5.0a0+872d972e41.nv24.08-cp310-cp310-linux_aarch64.whl](https://github.com/ultralytics/assets/releases/download/v0.0.0/torch-2.5.0a0+872d972e41.nv24.08-cp310-cp310-linux_aarch64.whl)
-    pip install [https://github.com/ultralytics/assets/releases/download/v0.0.0/torchvision-0.20.0a0+afc54f7-cp310-cp310-linux_aarch64.whl](https://github.com/ultralytics/assets/releases/download/v0.0.0/torchvision-0.20.0a0+afc54f7-cp310-cp310-linux_aarch64.whl)
+    pip install https://github.com/ultralytics/assets/releases/download/v0.0.0/torch-2.5.0a0+872d972e41.nv24.08-cp310-cp310-linux_aarch64.whl https://github.com/ultralytics/assets/releases/download/v0.0.0/torch-2.5.0a0+872d972e41.nv24.08-cp310-cp310-linux_aarch64.whl
+    
+    pip install https://github.com/ultralytics/assets/releases/download/v0.0.0/torchvision-0.20.0a0+afc54f7-cp310-cp310-linux_aarch64.whl https://github.com/ultralytics/assets/releases/download/v0.0.0/torchvision-0.20.0a0+afc54f7-cp310-cp310-linux_aarch64.whl
     ```
 4.  Install the CUDA keyring and related libraries:
     ```bash
-    wget [https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/arm64/cuda-keyring_1.1-1_all.deb](https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/arm64/cuda-keyring_1.1-1_all.deb)
+    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/arm64/cuda-keyring_1.1-1_all.deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/arm64/cuda-keyring_1.1-1_all.deb
+    
     sudo dpkg -i cuda-keyring_1.1-1_all.deb
+    
     sudo apt-get update
+    
     sudo apt-get -y install libcusparselt0 libcusparselt-dev
     ```
 5.  Install the ONNX Runtime for GPU:
     ```bash
-    pip install [https://github.com/ultralytics/assets/releases/download/v0.0.0/onnxruntime_gpu-1.20.0-cp310-cp310-linux_aarch64.whl](https://github.com/ultralytics/assets/releases/download/v0.0.0/onnxruntime_gpu-1.20.0-cp310-cp310-linux_aarch64.whl)
+    pip install https://github.com/ultralytics/assets/releases/download/v0.0.0/onnxruntime_gpu-1.20.0-cp310-cp310-linux_aarch64.whl https://github.com/ultralytics/assets/releases/download/v0.0.0/onnxruntime_gpu-1.20.0-cp310-cp310-linux_aarch64.whl
+    ```
+6.  Set numpy to the correct version:
+    ``` bash
+    pip install numpy==1.23.5
     ```
 
 ### 5. Running YOLO11 with the Camera
